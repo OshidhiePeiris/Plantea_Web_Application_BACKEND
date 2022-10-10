@@ -147,6 +147,74 @@ const getTopProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
+const getStockCount = asyncHandler(async (req,res)=>{
+  Product.aggregate([
+    {
+      $group :{
+        _id:'',
+        
+        total : {$sum :'$countInStock'}
+      }
+    
+    }
+  ]).then((prods)=>{
+    res.status(200).send(prods)
+  }).catch((err)=>{
+    console.log(err)
+  })
+
+})
+
+const getproductCount =  asyncHandler(async (req,res)=>{
+ 
+
+  Product.aggregate([
+    {
+      $group :{
+        _id:'',
+        
+        total : {$sum :1}
+      }
+    
+    }
+  ]).then((prods)=>{
+    res.status(200).send(prods)
+  }).catch((err)=>{
+    console.log(err)
+  })
+
+})
+
+const getTotalExpenses = asyncHandler(async(req,res)=>{
+  Product.aggregate([
+    {
+      $project:{
+        _id:{id:'$_id',name:'$name'},
+        total:{$multiply:['$price', '$countInStock']}
+      }
+    }
+  ]).then((products)=>{
+    res.status(200).send(products)
+  }).catch((err)=>{
+    console.log(err)
+  })
+})
+
+const getTotal = asyncHandler(async(req,res)=>{
+  Product.aggregate([
+    {
+      $group:{
+        _id:'',
+        total:{$sum:{$multiply:['$price', '$countInStock']}}
+      }
+    }
+  ]).then((prods)=>{
+    res.status(200).send(prods)
+  }).catch((err)=>{
+    console.log(err)
+  })
+})
+
 
 
 
@@ -163,4 +231,8 @@ export {
   deleteProduct,
   createProduct,
   updateProduct,
+  getStockCount,
+  getproductCount,
+  getTotalExpenses,
+  getTotal,
 };
