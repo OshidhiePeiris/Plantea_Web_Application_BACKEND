@@ -16,7 +16,6 @@ const authUser = asyncHandler(async (req, res) => {
       res.status(401);
       throw new Error('User with this Email does not exist.');
     } else {
-      if (user) {
         if (password === '') {
           res.status(401);
           throw new Error('Please Enter Password.');
@@ -34,10 +33,7 @@ const authUser = asyncHandler(async (req, res) => {
             throw new Error('Password is Incorrect.');
           }
         }
-      } else {
-        res.status(401);
-        throw new Error('Invalid Email or Password');
-      }
+      
     }
   }
 
