@@ -10,6 +10,10 @@ import {
   createProduct,
   createProductReview,
   getTopProducts,
+  getStockCount,
+  getproductCount,
+  getTotalExpenses,
+  getTotal,
 } from '../controllers/productController.js';
 // router.get('/',getProducts);
 router.route('/').get(getProducts).post(protect, admin, createProduct);
@@ -17,9 +21,15 @@ router.route('/').get(getProducts).post(protect, admin, createProduct);
 // router.get('/:id', getProductById);
 router.route('/:id/reviews').post(protect, createProductReview);
 router.get('/top', getTopProducts);
+router.get('/stock',getStockCount);
+router.get('/count',getproductCount)
+router.get('/expenses',getTotalExpenses)
+router.get('/total',getTotal)
 router
   .route('/:id')
   .get(getProductById)
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct);
+
+
 export default router;
