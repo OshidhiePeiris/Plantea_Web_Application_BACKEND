@@ -1,10 +1,11 @@
 {
+  "author": "",
   "name": "plantae",
   "version": "1.0.0",
   "description": "MERN App",
   "main": "server.js",
   "repository": "https://github.com/OshidhiePeiris/Plantea_Web_Application_BACKEND",
-  "license": "MIT",
+  "license": "ISC",
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
@@ -21,7 +22,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
     "sweetalert2": "^10.15.5",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.19"
   },
   "devDependencies": {
     "concurrently": "^5.3.0"
