@@ -10,10 +10,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "client": "cd frontend && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "data:import": "node seeder",
-    "data:destroy": "node seeder -d"
-
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
