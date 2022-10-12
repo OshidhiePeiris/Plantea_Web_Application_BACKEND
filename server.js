@@ -9,6 +9,7 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import cors from "cors";
 
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+app.use(cors({origin: '*'}));
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
