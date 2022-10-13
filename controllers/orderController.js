@@ -34,6 +34,20 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc  Delete Single Order
+//@route Delete /api/orders/:id
+// @access Private,Admin
+
+const deleteOrder = asyncHandler(async (req, res) => {
+  const product = await Order.findById(req.params.id);
+  if (product) {
+    await product.remove();
+    res.json({ message: 'Order Removed Successfully.' });
+  } else {
+    res.status(404).json({ message: 'Order Not Found!' });
+  }
+});
+
 //@desc  get order by id
 //@route GET  /api/order/:id
 // @access Private
@@ -111,6 +125,7 @@ const getOrders = asyncHandler(async (req, res) => {
 
 export {
   getOrderById,
+  deleteOrder,
   addOrderItems,
   updateOrderToPaid,
   getMyOrders,
