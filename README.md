@@ -2,7 +2,8 @@
 
  *Group Member Details* *
 
-Student Name  |Student Registration No |  GitHub Username	Student P
+Student Name  |Student Registration No |  GitHub Username	Student
+
 Peiris W. O. A | IT20019372 |  OshidhiePeiris
 Ranasinghe R. D. T. D |	IT20025076 |  Dinith727
 Pitawela P. C. Y. | IT20003678 |  YashPitawela	
