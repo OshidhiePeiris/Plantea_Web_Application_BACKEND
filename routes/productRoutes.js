@@ -9,17 +9,20 @@ import {
   updateProduct,
   createProduct,
   createProductReview,
+  deleteReview,
   getTopProducts,
   getStockCount,
   getproductCount,
   getTotalExpenses,
   getTotal,
+ 
 } from '../controllers/productController.js';
 // router.get('/',getProducts);
 router.route('/').get(getProducts).post(protect, admin, createProduct);
 
 // router.get('/:id', getProductById);
 router.route('/:id/reviews').post(protect, createProductReview);
+router.route('/delreview/:id/:reviewid').delete(protect,admin, deleteReview);
 router.get('/top', getTopProducts);
 router.get('/stock',getStockCount);
 router.get('/count',getproductCount)

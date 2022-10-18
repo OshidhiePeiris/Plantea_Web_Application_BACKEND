@@ -138,6 +138,40 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+//DELETE A REVIEW
+const deleteReview = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  console.log(req.params.id)
+  if( product) {
+    const reviewid=  req.params.reviewid
+    console.log(req.params.reviewid)
+ 
+
+   
+  product.reviews.map(data=>{
+    
+    if(data._id==reviewid){
+      console.log(data._id);
+       product.reviews.DELETE(data._id);
+  
+      res.json({ message: 'Review Removed Successfully.' });
+
+    } else {
+          res.status(404).json({ message: 'Review Not Found!' });
+        }
+  })
+  }
+  // const productid = req.params.id
+  // const reviewid = req.params.reviewid
+  // Product.updateOne({
+  //   _id:productid
+
+  // },{$pull:{reviews:{$eq:reviewid}}}).then(()=>{
+  //   res.json({message:'Review deleted'})
+  // })
+});
+
+
 // @desc    Get top rated products
 // @route   GET /api/products/top
 // @access  Public
@@ -227,6 +261,7 @@ export {
   getProductById,
   getTopProducts,
   createProductReview,
+  deleteReview,
   getProducts,
   deleteProduct,
   createProduct,
