@@ -182,7 +182,7 @@ const getTopProducts = asyncHandler(async (req, res) => {
 });
 
 const getStockCount = asyncHandler(async (req,res)=>{
-  Product.aggregate([
+  await Product.aggregate([
     {
       $group :{
         _id:'',
@@ -202,7 +202,7 @@ const getStockCount = asyncHandler(async (req,res)=>{
 const getproductCount =  asyncHandler(async (req,res)=>{
  
 
-  Product.aggregate([
+  await Product.aggregate([
     {
       $group :{
         _id:'',
@@ -220,7 +220,7 @@ const getproductCount =  asyncHandler(async (req,res)=>{
 })
 
 const getTotalExpenses = asyncHandler(async(req,res)=>{
-  Product.aggregate([
+  await Product.aggregate([
     {
       $project:{
         _id:{id:'$_id',name:'$name'},
@@ -235,7 +235,7 @@ const getTotalExpenses = asyncHandler(async(req,res)=>{
 })
 
 const getTotal = asyncHandler(async(req,res)=>{
-  Product.aggregate([
+  await Product.aggregate([
     {
       $group:{
         _id:'',
