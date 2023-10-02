@@ -4,6 +4,8 @@ import colors from 'colors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 
+import helmet from 'helmet';
+
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -18,12 +20,43 @@ connectDB();
 //initializing express server
 const app = express();
 
+// app.use(helmet());
+// app.disable('X-Powered-By');
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+
+
 app.use(express.json());
 app.use(cors({origin: '*'}));
+
+app.use(
+  helmet({
+    frameguard: {
+      action: 'deny',
+    },
+  })
+);
+// Disable the "X-Powered-By" header
+// app.disable('X-Powered-By');
+
+app.use((req, res, next) => {
+  res.set('X-Powered-By', 'Custom');
+  next();
+});
+
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  next();
+});
+
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'self'");
+  next();
+});
+
+
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
